@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block style %}
-    <link rel="stylesheet" href="../static/css/nakayoshi.css">
+    {% if aeta_data[9]==1 %}
+    <link rel="stylesheet" href="../../static/css/nakayoshi.css">
+    {% else %}
+    <link rel="stylesheet" href="../../static/css/homestyle.css">
+    {% endif %}
 {% endblock %}
 
 {% block content %}

@@ -179,7 +179,7 @@ def nakayoshi_judge(user_id):
         score = i.get("score")
         if score >= 10:
             c.execute("UPDATE aeta SET nakayoshi_FLG = 1 WHERE id = ?", (id,))
-        if score >= 6 and score < 10:
+        elif score >= 6 and score < 10:
             c.execute("UPDATE aeta SET misiri_FLG = 1 WHERE id = ?", (id,))
         else:
             c.execute("UPDATE aeta SET misiri_FLG = 0 ,nakayoshi_FLG = 0 WHERE id = ?", (id,))
@@ -267,7 +267,7 @@ def show_card(id):
         # ---- データベースに接続 ----
         conn = sqlite3.connect("aeta.db")
         c = conn.cursor()
-        c.execute("SELECT name, image, birthday_m, birthday_d, age, birthplace, residence, others, id\
+        c.execute("SELECT name, image, birthday_m, birthday_d, age, birthplace, residence, others, id, nakayoshi_FLG\
             FROM aeta WHERE id=?;",(id,))
         aeta_data = c.fetchone()
         c.execute("SELECT id, day, place, contents FROM situation WHERE aeta_id=? ORDER BY day DESC;",(id,))
@@ -342,7 +342,7 @@ def edit_get(id):
         # ---- データベースに接続 ----
         conn = sqlite3.connect("aeta.db")
         c = conn.cursor()
-        c.execute("SELECT name, image, birthday_m, birthday_d, age, birthplace, residence, others, id\
+        c.execute("SELECT name, image, birthday_m, birthday_d, age, birthplace, residence, others, id, nakayoshi_FLG\
             FROM aeta WHERE id=?",(id,))
         edit_data = c.fetchone()
         c.close()
