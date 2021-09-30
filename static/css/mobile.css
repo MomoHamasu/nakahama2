@@ -115,3 +115,49 @@ h2{
   font-weight: 100;
   color: #545454;
 }
+
+#hometopimg{
+  background-image: url(../img/home_mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 650px;
+  background-size: cover;
+}
+
+header.header-2{
+  background-color: #EDE4CD;
+  color: #545454;
+  height: 30px;
+}
+
+.sec1image{
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+}
+
+.logo2{
+  float: left;
+  font-size: 13px;
+  padding: 4px 10px;
+  font-family: harenosora;
+  letter-spacing:2px;
+  font-weight: 200;
+  color: #545454;
+}
+
+ul {
+  overflow:hidden;
+  list-style:none;
+  margin: 0 auto;
+  z-index: 20;
+}
+  
+ul li {
+  display: inline-block;
+  padding:8px 10px;
+  float: right;
+  font-size: 10px;
+}
