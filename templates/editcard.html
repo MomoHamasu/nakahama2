@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" href="../../static/css/homestyle.css">
+{% endblock %}
+
+{% block content %}
+
+<!-------- この下から書く -------->
+
+<header>
+    <div class="header-logo">aeta</div>
+    <ul>
+        <li><a href="/">ログアウト</a>
+        </li>
+        <li><a href="/card/{{edit_data[8]}}">キャンセル</a></li>
+    </ul>
+</header>
+
+<!-- 画像変更ポップアップ -->
+<div id="editimage" style="display: none;">
+    <div class="modal__bg js-modal-close"></div>
+    <div class="modal__content">
+        <div class="js-popup-close">
+            <a class="batsu" href="/home"><img src="{{url_for('static',filename='img/batsu.png')}}" width="30" height="30"></a>
+        </div>
+        <form id="form_up_img" action="/upload/edit" method="POST" enctype="multipart/form-data">
+            <input type="file" name="img_file">
+            <input type="hidden" name="edit_id" value="{{edit_data[8]}}">
+            <input id="btn_up_img" type="submit" name="up_edit" value="アップロード">
+        </form>
+    </div>
+    
+</div>
+
+<div class="top">    
+    <form action="/editcard" method="POST">
+        <div class="parts1">
+            <section class="aetaimage">
+                <div class="change_image_flame">
+                    <img class ="sec1image" src="{{url_for('static',filename='img')}}/{{edit_data[1]}}" alt="現在のアイコン" width="200" height="200" style="border-radius: 20px;">
+                </div>
+                <br><a href="#editimage" class="edit_img_change add_img_change">画像変更</a>
+                <input type="hidden" name="image" value="{{edit_data[1]}}">
+            </section>
+            <section class="aetadeta">
+                    <div>名前　
+                        <input class="deta" type="text" name="name" value="{{edit_data[0]}}"></div>
+                    <div>誕生日 
+                        <input class="birthday" type="text" name="birthday_m" value="{{edit_data[2]}}"><span>月</span>
+                        <input class="birthday" type="text" name="birthday_d" value="{{edit_data[3]}}"><span>日</span>
+                        <input class="birthday" type="text" name="age" value="{{edit_data[4]}}"><span>才</span>
+                    </div>
+                    <div>居住地 
+                        <input class="deta" type="text" name="residence" value="{{edit_data[5]}}">
+                    </div>
+                    <div>出身地 
+                        <input class="deta" type="text" name="birthplace" value="{{edit_data[6]}}">
+                    </div>
+                
+            </section>
+        </div>
+        
+        <div>
+            <p>その他メモ（趣味や特技、仕事や共通の知人など）</p>
+            <div><textarea id="memo" name="others" cols="80" rows="10">{{edit_data[7]}}</textarea></div>
+        </div>
+
+        <div>
+            <input type="hidden" name="id" value="{{edit_data[8]}}">
+            <input class="kettei" type="submit" name="submit" value="編集内容登録">
+        </div>
+    </form>
+</div>
+
+<!-- 画像変更ポップアップ -->
+<!-- 未実装 -->
+
+<!-------- この上までに書く -------->
+{% endblock %}

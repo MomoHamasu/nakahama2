@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'harenosora';
+	src: url(../fonts/Harenosora.otf);
+}
+@font-face {
+  font-family: loto;
+  src: url(../fonts/Lato-Light.ttf);
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+  font-family: harenosora;
+}
+input[type="submit"],button{
+  cursor: pointer;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	text-align: center;
+}
+
+.header ,.footer{
+  background-color: #B2CBE4;
+  color: #545454;
+  height: 30px;
+}
+
+.header-logo {
+  float: left;
+  font-size: 13px;
+  padding: 4px 10px;
+  font-family: harenosora;
+  letter-spacing:2px;
+  font-weight: 200;
+  color: #fff;
+}
+
+.top{
+  background-image: url(../img/mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 650px;
+  background-size: cover;
+}
+
+h1{
+  padding-top: 15px;
+  letter-spacing:8px;
+  font-size: 60px;
+  font-weight: 200;
+  color: #545454;
+  text-shadow: 1px 3px 5px #808080
+}
+
+p{
+  font-family: loto;
+  color: #545454;
+  padding: 20px 0 25px;
+  font-size: 12px;
+}
+
+form{
+  font-family: harenosora;
+  color: #545454;
+}
+
+input[type=password]{
+  font-family: loto;
+}
+input{
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0 5px;
+  background-color: #ffff;
+  color: #545454;
+}
+
+.login1,.touroku1{
+  height: 30px;
+  width: 100px;
+  margin: 0px 0px 15px;
+  border: #B6CCD7 solid 1px;
+  color: #545454;
+}
+
+.button{
+  height: 38px;
+  padding: 10px;
+  width: 150px;
+  padding: 0 16px;
+  border:#D4ACAD solid 2px;
+}
+p#text{
+  padding-bottom: 5px;
+}
+
+.batsu{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+h2{
+  font-family: harenosora;
+  padding: 60px 0 30px;
+  letter-spacing:px;
+  font-size: 30px;
+  font-weight: 100;
+  color: #545454;
+}

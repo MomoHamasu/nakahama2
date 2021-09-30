@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="../static/css/mobile.css" media="screen and (max-width:699px)">
+    <link rel="stylesheet" href="../static/css/style.css" media="screen and (min-width:700px)">
+{% endblock %}
+
+{% block content %}
+
+    <div class="header">
+      <div class="header-logo">aeta</div>
+    </div>
+  <div class="top">
+    <h1>aeta</h1>
+    <p>aetaは、コミュニケーション記録アプリです。<br>
+    今日会えたあの人のこと<br>
+    忘れないように記録しませんか</p>
+
+    <form action="/" method="POST">
+    name <input class="login1" type="text" placeholder="お名前" name="username">
+      <br>pass <input class="login1" type="password" placeholder="password" name="password">
+      <br><input class="login1" type="submit" name="login" value="ログイン">
+    </form>
+
+    <p id="text">初めての方<br>まずはme登録</p>
+    <input class="button" type="submit" name="touroku" value="新規ユーザー登録" onclick="location.href='/regist'">
+  </div>
+  <div class="footer">
+    <div class="footer-logo"></div>
+  </div>
+{% endblock %}

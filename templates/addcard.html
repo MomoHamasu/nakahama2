@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" href="../static/css/homestyle.css">
+{% endblock %}
+
+{% block content %}
+<!-------- この下から書く -------->
+
+<header>
+    <div class="header-logo">aeta</div>
+    <ul>
+        <li><a href="/">ログアウト</a>
+        </li>
+        <li><a href="/home">ホーム</a>
+        </li>
+    </ul>
+</header>
+
+<!-- 画像変更ポップアップ -->
+<div id="upimage" style="display: none;">
+    <div class="modal__bg js-modal-close"></div>
+    <div class="modal__content">
+        <div class="js-popup-close-me">
+            <a class="batsu" href="/home"><img src="{{url_for('static',filename='img/batsu.png')}}" width="30" height="30"></a>
+        </div>
+        <form id="form_up_img" action="/upload/add" method="POST" enctype="multipart/form-data">
+            <input type="file" name="img_file">
+            <input id="btn_up_img" type="submit" name="up_add" value="アップロード">
+        </form>
+    </div>
+    
+</div>
+
+
+<div class="top">   
+    <form action="/addcard" method="POST">
+        <div class="parts1">
+            <section class="aetaimage">
+                <div class="change_image_flame">
+                    {% if filename %}
+                        <img class="sec1image" src="{{url_for('static',filename='img')}}/{{filename}}" alt="新しいアイコン" style="border-radius: 20px;">
+                    {% endif %}
+                </div>
+                <br><a href="#upimage" class="add_img_change">画像変更</a>
+                <input type="hidden" name="image" value="{{filename}}">
+            </section>
+            <section class="aetadeta">
+                    <div>名前　
+                        <input class="deta" type="text" name="name"></div>
+                    <div>誕生日 
+                        <input class="birthday" type="text" name="birthday_m"><span>月</span><input class="birthday" type="text" name="birthday_d"><span>日</span>　 <input class="birthday" type="text" name="age"><span>才</span>
+                    </div>
+                    <div>居住地 
+                        <input class="deta" type="text" name="residence">
+                    </div>
+                    <div>出身地 
+                        <input class="deta" type="text" name="birthplace">
+                    </div>
+                
+            </section>
+        </div>
+        
+        <div>
+            <p>その他メモ（趣味や特技、仕事や共通の知人など）</p>
+            <div><textarea id="memo" name="others" cols="80" rows="10"></textarea></div>
+        </div>
+
+        <div>
+            <div class="scene">
+                <div>シーン登録</div>
+            </div>
+            <table class="scene-touroku">
+                <tr>
+                    <th>会った日</th>
+                    <th>場所</th>
+                    <th>話したこと等</th>
+                </tr>
+                <tr>
+                    <td><input class="scene-naiyou" type="date" name="day"></td>
+                    <td><input class="scene-naiyou" type="text" name="place"></td>
+                    <td><textarea class="scene-naiyou" id="scene-syousai" name="contents" cols="30" rows="5"></textarea></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <input class="kettei" type="submit" name="submit" value="新規aeta登録">
+        </div>
+    </form>
+    
+</div>
+<!-------- この上までに書く -------->
+{% endblock %}

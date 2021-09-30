@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="../static/css/mobile.css" media="screen and (max-width:699px)">
+<link rel="stylesheet" href="../static/css/style.css" media="screen and (min-width:700px)">
+{% endblock %}
+
+{% block content %}
+
+    <!-------- この下から書く -------->
+
+    <header class="header-2">
+        <div class="header-logo">aeta</div>
+        <ul>
+            <li><a href="/logout">ログアウト</a>
+            </li>
+            <li><a href="/home">ホーム</a>
+            </li>
+
+        </ul>
+    </header>
+        <!-- 画像変更ポップアップ -->
+    <div id="up-me-image" style="display: none;">
+
+        <div class="modal__bg js-modal-close"></div>
+        <div class="modal__content">
+            <div class="js-popup-close-me">
+                <a class="batsu" href="/home"><img src="{{url_for('static',filename='img/batsu.png')}}" width="30" height="30"></a>
+            </div>
+            <form id="form_up_img" action="/upload/home" method="POST" enctype="multipart/form-data">
+                <input type="file" name="img_file">
+                <input id="btn_up_img" type="submit" name="up_home" value="アップロード">
+            </form>
+
+        </div>
+        
+    </div>
+    <div class="top">
+        
+        <div class="sec1">
+            <div class="hometop">
+                <img class ="sec1image" src="{{url_for('static',filename='img')}}/{{user_data[0]}}" alt="プロフィール画像" style="border-radius: 20px;">
+                <button class="sec1btn">画像変更</button>
+            </div>
+        </div>
+    
+        <div class="sec2">
+            <div class="item" id="aeta">
+                <p>aeta<span>{{user_data[1]}}</span>人</p>
+            </div>
+            <div class="item" id="nakayoshi">
+                <p>nakayoshi<span>{{user_data[2]}}</span>人</p>
+            </div>
+
+            <br><div class="item">
+                <form class="sec2form" action="">
+                    <input class="search" type="search" name="search" placeholder="名前検索">
+                    <input class="search" type="submit" name="submit" value="検索">
+                </form>
+            </div>
+
+            <div class="item">
+                <a class="touroku" href="./addcard">新規aeta登録</a>
+            </div>
+            
+        </div>    
+        
+        <!-- aetaリスト -->
+        <div class="vertical-scroll-table">
+            <table id="aeta-scene">
+                {% for aeta in aeta_list %}
+                <tr class="clickable-row" data-href="/card/{{aeta['id']}}"> 
+                    <td><img class ="table-image" src="{{url_for('static',filename='img')}}/{{aeta['image']}}" alt="アイコン" width="80" height="80" style="object-fit: cover;"></td>
+                    <td>{{aeta['name']}}</td>
+                    <td>前回会った日：{{aeta['day']}}</td>
+                </tr>  
+                {% endfor %}
+
+            </table>
+        </div>
+        
+        
+        
+
+
+    </div>
+    <div class="footer">
+        <div class="footer-logo"></div>
+    </div>
+    
+
+
+    <!-------- この上までに書く -------->
+
+    {% endblock %}

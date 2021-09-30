@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" href="../static/css/nakayoshi.css">
+{% endblock %}
+
+{% block content %}
+    <!-------- この下から書く -------->
+
+    <header class="header-2">
+        <div class="header-logo">aeta</div>
+        <ul>
+            <li><a href="/">ログアウト</a>
+            </li>
+            <li><a href="/home">ホーム</a>
+            </li>
+
+        </ul>
+    </header>
+
+    <div class="top">
+
+        <div id="nakayoshi-img" ></div>
+        <div class="parts1">
+
+            <section  class="aetaimage">
+                <img class="sec1image" src="{{url_for('static',filename='img')}}/{{aeta_data[1]}}" alt="アイコン" width="200" height="200" style="border-radius: 20px;">
+            </section>
+            <section class="aetadeta">
+                <div class="personal">
+                    <div>名前 {{aeta_data[0]}}</div>
+                </div>
+                <div class="personal">
+                    <div>誕生日 {{aeta_data[2]}}<span>月</span>{{aeta_data[3]}}<span>日</span>　　{{aeta_data[4]}}<span>才</span></div>
+                </div>
+                <div class="personal">
+                    <div>居住地 {{aeta_data[5]}}</div>
+                </div>
+                <div class="personal">
+                    <div>出身地 {{aeta_data[6]}}</div>
+                </div>
+    
+            </section>
+        </div>
+
+        <div class="memo-color">
+            <p>その他メモ（趣味や特技、仕事や共通の知人など）</p>
+            <div class="memo-sannsyou">{{aeta_data[7]}}</div>
+        </div>
+
+        <div>
+            <div class="scene">
+                <div class="js-popup-open">aetaシーン <button class="js-modal-open">シーン追加</button></div> <!-- ポップアップを開く用classをつけてます -->
+            </div>
+            <div class="scroll-table" >
+                <table id="scene-touroku" style="border-collapse: collapse">
+                    <tr>
+                        <th class="hyou"> 会った日 </th>
+                        <th class="hyou"> 場所 </th>
+                        <th class="hyou"> 話したこと等 </th>
+                    </tr>
+                    {% for items in scene_data %}
+                    <tr>
+                        <td class="hyou">{{items["day"]}}</td>
+                        <td class="hyou">{{items["place"]}}</td>
+                        <td class="hyou" id="scene-contents">{{items["contents"]}}</td>
+
+                        <td>
+                            <form action="/del" method="POST">
+                                <input type="hidden" name="aeta_id" value="{{aeta_data[8]}}">
+                                <input type="hidden" name="del_id" value="{{items['scene_id']}}">
+                                <input class="scenesakuzyo" type="submit" name="delete" value="シーン削除">
+                            </form>
+                        </td>
+
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            
+        </div>
+
+        <div class="syuusei">
+            <a class="syuusei-btn" href="/card/{{aeta_data[8]}}/edit">内容修正</a>
+        </div>
+
+        <!-- シーン追加ポップアップ画面ここから -->
+        <div class="modal js-modal">
+            <div class="modal__bg js-modal-close"></div>
+            <div class="modal__content">
+                <ul>
+                    <li class="modal-li">
+                        <div class="js-popup-close">
+
+                            <a class="batsu2" href="/card"><img class="" src="{{url_for('static',filename='img/batsu.png')}}" width="20" height="20"></a>
+
+                        </div>
+                    </li>
+                </ul>
+
+                
+                <form action="/situation" method="POST">
+                    <table class="scene-touroku">
+                        <tr>
+                            <th>会った日</th>
+                            <th>場所</th>
+                            <th>話したこと等</th>
+                        </tr>
+                        <tr>
+                            <td><input class="scene-naiyou" type="date" name="day"></td>
+                            <td><input class="scene-naiyou" type="text" name="place"></td>
+                            <td><textarea class="scene-naiyou" id="scene-syousai" name="contents" cols="30" rows="5"></textarea></td>
+                        </tr>
+                    </table>
+                    <div id="tuika-btn">
+                        <input type="hidden" name="id" value="{{aeta_data[8]}}">
+                        <input class="syuusei-btn" type="submit" name="submit" value="追加">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-------- この上までに書く -------->
+{% endblock %}
