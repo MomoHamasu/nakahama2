@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
 {% block style %}
-    <link rel="stylesheet" href="../static/css/homestyle.css">
+    <link rel="stylesheet" href="../static/css/mobile.css" media="screen and (max-width:699px)">
+    <link rel="stylesheet" href="../static/css/homestyle.css" media="screen and (min-width:700px)">
 {% endblock %}
 
 {% block content %}
 <!-------- この下から書く -------->
 
-<header>
+<header class="header-2">
     <div class="header-logo">aeta</div>
     <ul>
         <li><a href="/">ログアウト</a>
         </li>
         <li><a href="/home">ホーム</a>
         </li>
+
     </ul>
 </header>
 
@@ -33,7 +35,7 @@
 </div>
 
 
-<div class="top">   
+<div class="top" id="hometopimg">   
     <form action="/addcard" method="POST">
         <div class="parts1">
             <section class="aetaimage">
