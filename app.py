@@ -381,7 +381,9 @@ def edit_post():
     else:
         return redirect("/")
 
-
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("page_not_found.html"),404
 # -------------- この上までに書く -----------------
 
 if __name__ == "__main__":
